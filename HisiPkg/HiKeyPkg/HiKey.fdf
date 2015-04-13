@@ -26,7 +26,7 @@
 ################################################################################
 
 [FD.BL33_AP_UEFI]
-BaseAddress   = 0x37000000|gArmTokenSpaceGuid.PcdFdBaseAddress  # The base address of the Firmware in NOR Flash.
+BaseAddress   = 0x35000000|gArmTokenSpaceGuid.PcdFdBaseAddress  # The base address of the Firmware in NOR Flash.
 Size          = 0x000F0000|gArmTokenSpaceGuid.PcdFdSize         # The size in bytes of the FLASH Device
 ErasePolarity = 1
 
@@ -100,10 +100,6 @@ READ_LOCK_STATUS   = TRUE
   INF EmbeddedPkg/RealTimeClockRuntimeDxe/RealTimeClockRuntimeDxe.inf
   INF EmbeddedPkg/MetronomeDxe/MetronomeDxe.inf
 
-  INF MdeModulePkg/Universal/Variable/EmuRuntimeDxe/EmuVariableRuntimeDxe.inf
-
-  INF MdeModulePkg/Universal/HiiDatabaseDxe/HiiDatabaseDxe.inf
-
   #
   # Multiple Console IO support
   #
@@ -124,12 +120,29 @@ READ_LOCK_STATUS   = TRUE
   INF EmbeddedPkg/Drivers/DwMmcDxe/DwMmcDxe.inf
 
   #
+  # USB
+  #
+  INF EmbeddedPkg/Drivers/DwUsbDxe/DwUsbDxe.inf
+  INF EmbeddedPkg/Drivers/AndroidFastbootTransportUsbDxe/FastbootTransportUsbDxe.inf
+
+  #
+  # reuse ArmVExpressFastBoot.c FASTBOOT_PLATFORM_PROTOCOL
+  #
+  INF ArmPlatformPkg/ArmVExpressPkg/ArmVExpressFastBootDxe/ArmVExpressFastBootDxe.inf
+
+  #
   # FAT filesystem + GPT/MBR partitioning
   #
   INF MdeModulePkg/Universal/Disk/DiskIoDxe/DiskIoDxe.inf
   INF MdeModulePkg/Universal/Disk/PartitionDxe/PartitionDxe.inf
   INF FatBinPkg/EnhancedFatDxe/Fat.inf
   INF MdeModulePkg/Universal/Disk/UnicodeCollation/EnglishDxe/EnglishDxe.inf
+
+  INF HisiPkg/HiKeyPkg/Drivers/BlockVariableDxe/BlockVariableDxe.inf
+  INF MdeModulePkg/Universal/Variable/RuntimeDxe/VariableRuntimeDxe.inf
+  INF MdeModulePkg/Universal/FaultTolerantWriteDxe/FaultTolerantWriteDxe.inf
+
+  INF MdeModulePkg/Universal/HiiDatabaseDxe/HiiDatabaseDxe.inf
 
   #
   # UEFI applications
